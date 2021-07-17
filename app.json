@@ -115,6 +115,10 @@
         "SCHEME": {
             "description": "Contains project name. Used for deep links",
             "required": true
+        },
+        "TEMP_TOKEN": {
+            "description": "Temp token if any",
+            "required": false
         }
     }
 }

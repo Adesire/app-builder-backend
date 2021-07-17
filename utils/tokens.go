@@ -27,7 +27,16 @@ func GetRtcToken(channel string, uid int) (string, error) {
 	currentTimestamp := uint32(time.Now().UTC().Unix())
 	expireTimestamp := currentTimestamp + 86400
 
+	if viper.GetString("TEMP_TOKEN") != "" {
+		return myTempToken()
+	}
+
 	return rtctoken.BuildTokenWithUID(viper.GetString("APP_ID"), viper.GetString("APP_CERTIFICATE"), channel, uint32(uid), RtcRole, expireTimestamp)
+}
+
+//my temp token
+func myTempToken() (string, error) {
+	return viper.GetString("TEMP_TOKEN"), nil
 }
 
 // GetRtmToken generates a token for Agora RTM SDK
