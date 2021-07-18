@@ -60,14 +60,13 @@ func (r *mutationResolver) CreateChannel(ctx context.Context, title string, back
 	}
 
 	//channelName, err := utils.GenerateUUID()
-	channelName, err := title, nil
+	channelName, err := title,
 	if err != nil {
 		r.Logger.Error().Err(err).Msg("Channel Name generation failed")
 		return nil, errInternalServer
 	}
 
-	//channel := strings.ReplaceAll(channelName, "-", "")
-	channel := channelName
+	channel := strings.ReplaceAll(channelName, "-", "")
 
 	secretGen, err := utils.GenerateUUID()
 	if err != nil {
