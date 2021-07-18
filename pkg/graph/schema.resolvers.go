@@ -66,7 +66,8 @@ func (r *mutationResolver) CreateChannel(ctx context.Context, title string, back
 		return nil, errInternalServer
 	}
 
-	channel := strings.ReplaceAll(channelName, "-", "")
+	//channel := strings.ReplaceAll(channelName, "-", "")
+	channel := channelName
 
 	secretGen, err := utils.GenerateUUID()
 	if err != nil {
