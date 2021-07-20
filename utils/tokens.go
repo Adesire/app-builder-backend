@@ -49,7 +49,7 @@ func GetRtmToken(user string) (string, error) {
 }
 
 // GenerateUserCredentials generates uid, rtc and rtc token
-func GenerateUserCredentials(channel string, rtm bool, pstn bool) (*models.UserCredentials, error) {
+func GenerateUserCredentials(channel string, rtm bool, pstn bool, name string) (*models.UserCredentials, error) {
 	initialUID := RandomRange(10000000, 99999999)
 	var uid int
 	if pstn {
@@ -76,8 +76,9 @@ func GenerateUserCredentials(channel string, rtm bool, pstn bool) (*models.UserC
 	}
 
 	return &models.UserCredentials{
-		Rtc: rtcToken,
-		Rtm: &rtmToken,
-		UID: uid,
+		Rtc:  rtcToken,
+		Rtm:  &rtmToken,
+		UID:  uid,
+		Name: &name,
 	}, nil
 }

@@ -466,19 +466,17 @@ func (r *queryResolver) JoinChannel(ctx context.Context, passphrase string, name
 		return nil, errors.New("Invalid URL")
 	}
 
-	mainUser, err := utils.GenerateUserCredentials(channelData.ChannelName, true, false)
+	mainUser, err := utils.GenerateUserCredentials(channelData.ChannelName, true, false, name)
 	if err != nil {
 		r.Logger.Error().Err(err).Msg("Could not generate main user credentials")
 		return nil, errInternalServer
 	}
 
-	screenShare, err := utils.GenerateUserCredentials(channelData.ChannelName, false, false)
+	screenShare, err := utils.GenerateUserCredentials(channelData.ChannelName, false, false, name)
 	if err != nil {
 		r.Logger.Error().Err(err).Msg("Could not generate screenshare user credentails")
 		return nil, errInternalServer
 	}
-
-	mainUser.name = name
 
 	return &models.Session{
 		Title:       channelData.Title,
