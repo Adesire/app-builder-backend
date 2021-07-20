@@ -65,8 +65,9 @@ func GenerateUserCredentials(channel string, rtm bool, pstn bool, name string) (
 
 	if !rtm {
 		return &models.UserCredentials{
-			Rtc: rtcToken,
-			UID: uid,
+			Rtc:  rtcToken,
+			UID:  uid,
+			Name: &name,
 		}, nil
 	}
 
