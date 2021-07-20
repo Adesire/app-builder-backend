@@ -441,7 +441,7 @@ func (r *mutationResolver) LogoutSession(ctx context.Context, token string) ([]s
 	return string_token_slice, nil
 }
 
-func (r *queryResolver) JoinChannel(ctx context.Context, passphrase string) (*models.Session, error) {
+func (r *queryResolver) JoinChannel(ctx context.Context, passphrase string, name string) (*models.Session, error) {
 	r.Logger.Info().Str("query", "JoinChannel").Str("passphrase", passphrase).Msg("")
 
 	var channelData models.Channel
@@ -477,6 +477,8 @@ func (r *queryResolver) JoinChannel(ctx context.Context, passphrase string) (*mo
 		r.Logger.Error().Err(err).Msg("Could not generate screenshare user credentails")
 		return nil, errInternalServer
 	}
+
+	mainUser.name = name
 
 	return &models.Session{
 		Title:       channelData.Title,
