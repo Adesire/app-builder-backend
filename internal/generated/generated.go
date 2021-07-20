@@ -114,7 +114,7 @@ type MutationResolver interface {
 	LogoutSession(ctx context.Context, token string) ([]string, error)
 }
 type QueryResolver interface {
-	JoinChannel(ctx context.Context, passphrase string, name string) (*models.Session, error)
+	JoinChannel(ctx context.Context, passphrase string) (*models.Session, error)
 	Share(ctx context.Context, passphrase string) (*models.ShareResponse, error)
 	GetUser(ctx context.Context) (*models.User, error)
 }
@@ -1289,7 +1289,7 @@ func (ec *executionContext) _Query_joinChannel(ctx context.Context, field graphq
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().JoinChannel(rctx, args["passphrase"].(string), args["name"].(string))
+		return ec.resolvers.Query().JoinChannel(rctx, args["passphrase"].(string))
 	})
 	if err != nil {
 		ec.Error(ctx, err)

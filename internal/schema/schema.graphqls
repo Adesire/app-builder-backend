@@ -19,7 +19,6 @@ type UserCredentials {
   rtc: String!
   rtm: String
   uid: Int!
-  name: String
 }
 
 type Session { 
@@ -42,7 +41,7 @@ type UIDMuteState {
 }
 
 type Query {
-  joinChannel(passphrase: String!, name: String): Session!
+  joinChannel(passphrase: String!): Session!
   share(passphrase: String!): ShareResponse!
   getUser: User!
 }
