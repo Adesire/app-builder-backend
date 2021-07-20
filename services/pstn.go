@@ -139,7 +139,7 @@ func (router *ServiceRouter) PSTN(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, err := utils.GenerateUserCredentials(channelData.ChannelName, false, true)
+	user, err := utils.GenerateUserCredentials(channelData.ChannelName, false, true, "")
 	if err != nil {
 		router.Logger.Error().Err(err).Msg("Could not generate main user credentials")
 		return
